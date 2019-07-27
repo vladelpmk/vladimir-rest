@@ -1,6 +1,11 @@
+const uri = "mongodb+srv://API-user:FcGCfDWKHuk4Gtep@vladimir-rest-qazlt.mongodb.net/test?retryWrites=true&w=majority";
+
+
 var express = require('express');
-var app = express();
 const PORT = process.env.PORT || 3000
+var db;
+
+var app = express();
 
 let data = {
   1: {
@@ -13,13 +18,32 @@ let data = {
   },
 };
 
-
-
-
 app.get('/', function (req, res) {
-  res.status(500).json(data)
+
+  db.find().limit(10).toArray((err, result) => {
+    if (err) return console.log(err)
+      res.status(200).json(result);
+  })
+
 });
 
-app.listen(PORT, function () {
-  console.log('Example app listening on port 3000!')
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
+
+// Connection URL
+const url = uri;
+
+// Database Name
+const dbName = 'sample_weatherdata';
+const client = new MongoClient(url);
+
+// Use connect method to connect to the server
+client.connect(function(err) {
+  assert.equal(null, err);
+  console.log("Connected successfully to server");
+  db = client.db(dbName).collection("data");
+
+  app.listen(PORT, function () {
+    console.log('listening on 3000')
+  })
 });
