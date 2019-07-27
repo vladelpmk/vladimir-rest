@@ -1,0 +1,22 @@
+{
+  "name": "vladimir-rest",
+  "version": "1.0.0",
+  "description": "express.js rest api test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladelpmk/vladimir-rest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vladelpmk/vladimir-rest/issues"
+  },
+  "homepage": "https://github.com/vladelpmk/vladimir-rest#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
